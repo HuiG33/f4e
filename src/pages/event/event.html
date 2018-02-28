@@ -33,12 +33,11 @@
     </ion-card-content>
     <ion-row>
       <ion-col>
-
-        <button ion-button icon-left clear small (click)="mediaProvider.like(fileID)">
+        <button ion-button icon-left clear small (click)="mediaProvider.like(fileID)" *ngIf="!isLiked" >
           <ion-icon name="thumbs-up"></ion-icon>
           <div>{{likeamount}} Likes</div>
         </button>
-        <button ion-button icon-left clear small (click)="mediaProvider.unLike(fileID)">
+        <button ion-button icon-left clear small (click)="mediaProvider.unLike(fileID)" *ngIf="isLiked">
           <ion-icon name="thumbs-down"></ion-icon>
           <div>{{likeamount}} Likes</div>
         </button>

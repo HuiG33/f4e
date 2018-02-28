@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {MediaProvider} from '../../providers/media/media';
 import {CommentsPage} from '../comments/comments';
 
@@ -26,65 +26,75 @@ export class EventPage {
   timeAdded: any;
   likes: any;
   likeamount: any;
-<<<<<<< HEAD
-  //isLiked: any;
-=======
-<<<<<<< HEAD
-  isLiked: boolean = true;
   comments: any;
   commentsAmount: any;
-=======
-  isLiked: any;
->>>>>>> 7f51ae7ff7d39c83c36cabf8f93574883b0dec51
->>>>>>> 9058f6ca39f8211d1ccb49d801bd793e97d40183
+  isLiked: boolean = true;
+  likesArray: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private mediaProvider: MediaProvider) {
+  constructor(
+    public navCtrl: NavController, public navParams: NavParams,
+    private mediaProvider: MediaProvider) {
     this.fileID = navParams.get('file_id');
     this.title = this.navParams.get('title');
     this.description = this.navParams.get('description');
     this.userID = this.navParams.get('user_id');
     this.fileName = this.navParams.get('filename');
     this.timeAdded = this.navParams.get('time_added');
-    //this.isLiked = this.navParams.get('liked');
   }
 
-  getUsernameByUserID(){
+  getUsernameByUserID() {
     this.mediaProvider.getUsernameByUserId(this.userID).subscribe(response => {
-      console.log(response);
+      //console.log(response);
       this.userName = response['username'];
     });
   }
 
-  getLikesByFileID(){
+  getLikesByFileID() {
     this.mediaProvider.getLikesByFileId(this.fileID).subscribe(response => {
-      console.log(response);
+      //console.log(response);
       this.likes = response;
       this.likeamount = this.likes.length;
     });
   }
 
+  checkIfLiked() {
+    this.mediaProvider.getAllLikes().subscribe(response => {
+      this.likesArray = response;
+      this.likesArray.forEach(data => {
+        if(data.file_id == this.fileID){
+          this.isLiked = true;
+        }
+        else {
+          this.isLiked = false;
+        }
+      });
+    });
+    console.log(this.isLiked);
+  }
+
+  getCommentsAmountByFileId() {
+    this.mediaProvider.getCommentsByFileId(this.fileID).subscribe(response => {
+      //console.log(response);
+      this.comments = response;
+      this.commentsAmount = this.comments.length;
+    });
+  }
+
   ionViewDidLoad() {
-    console.log(this.fileID);
-    console.log(this.title);
-    console.log(this.description);
-    console.log(this.userID);
-    console.log(this.fileName);
+    //console.log(this.fileID);
+    //console.log(this.title);
+    //console.log(this.description);
+    //console.log(this.userID);
+    //console.log(this.fileName);
     this.getUsernameByUserID();
     this.getLikesByFileID();
     this.getCommentsAmountByFileId();
+    this.checkIfLiked();
   }
 
   itemTapped(event) {
     this.navCtrl.push(CommentsPage, {
-      file_id: this.fileID
-    });
-  }
-
-  getCommentsAmountByFileId () {
-    this.mediaProvider.getCommentsByFileId(this.fileID).subscribe(response => {
-      console.log(response);
-      this.comments = response;
-      this.commentsAmount = this.comments.length;
+      file_id: this.fileID,
     });
   }
 

@@ -11,7 +11,6 @@ import {EventPage} from '../event/event';
   templateUrl: 'list.html'
 })
 export class ListPage {
-  selectedItem: any;
   filesArray: any;
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;

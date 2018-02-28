@@ -139,11 +139,6 @@ export class MediaProvider {
       headers: new HttpHeaders().set('x-access-token',
         localStorage.getItem('token')),
     };
-    this.http.get(this.apiUrl + '/favourites', settings).subscribe(response => {
-      console.log(response);
-    }, (error: HttpErrorResponse) => {
-      console.log(error.error.message);
-    });
+    return this.http.get(this.apiUrl + '/favourites', settings);
   }
-
 }

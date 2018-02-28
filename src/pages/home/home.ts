@@ -22,6 +22,6 @@ export class HomePage {
 
   }
   ionViewDidLoad() {
-    this.mediaProvider.getAllLikes();
+    //this.mediaProvider.getAllLikes();
   }
 }
