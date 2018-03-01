@@ -141,4 +141,14 @@ export class MediaProvider {
     };
     return this.http.get(this.apiUrl + '/favourites', settings);
   }
+
+  postTag(tag) {
+    console.log(tag);
+    const settings = {
+      headers: new HttpHeaders().set('x-access-token',
+        localStorage.getItem('token')),
+    };
+    return this.http.post(this.apiUrl + '/comments', tag, settings);
+  }
+
 }

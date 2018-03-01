@@ -5,6 +5,7 @@ import {HttpErrorResponse} from '@angular/common/http';
 import {LoginPage} from '../login/login';
 import {Media} from '../../interfaces/media';
 import {ListPage} from '../list/list';
+import {Tags} from '../../interfaces/tags';
 
 /**
  * Generated class for the ProfilePage page.
@@ -21,9 +22,16 @@ import {ListPage} from '../list/list';
 export class ProfilePage {
 
   file: File;
+  tagArray: any;
+
   media: Media = {
     title: '',
     description: ''
+  };
+
+  tag: Tags = {
+    file_id: null,
+    tag: ''
   };
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private mediaProvider: MediaProvider) {
@@ -52,6 +60,12 @@ export class ProfilePage {
     });
   }
 
+  postNewTag() {
+    this.mediaProvider.postTag(this.tag).subscribe(response => {
+      console.log(response);
+      this.tagArray = response;
+    });
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
     if (localStorage.getItem('token') == null) {
