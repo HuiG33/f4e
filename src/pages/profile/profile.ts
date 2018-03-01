@@ -23,6 +23,10 @@ export class ProfilePage {
 
   file: File;
   tagArray: any;
+  userID: number;
+  user: any;
+  picData: any;
+  userData: any;
 
   media: Media = {
     title: '',
@@ -30,8 +34,8 @@ export class ProfilePage {
   };
 
   tag: Tags = {
-    file_id: null,
-    tag: ''
+    file_id: 525,
+    tag: 'logo'
   };
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private mediaProvider: MediaProvider) {
@@ -60,12 +64,42 @@ export class ProfilePage {
     });
   }
 
+  uploadProfilePic() {
+    console.log(this.media);
+    // create FormData-object
+    const formData = new FormData();
+    // add title and description to FormData-object
+    formData.append('title', 'profilepic');
+    formData.append('description', 'profilepic');
+    // add file to FormData-object
+    formData.append('file', this.file);
+    // send FormData object to API
+    this.mediaProvider.getUploadData(formData).subscribe(response => {
+      this.picData = response;
+      this.tag.file_id = this.picData.file_id;
+      console.log(this.tag.file_id);
+      this.mediaProvider.getUserData().subscribe(response => {
+        this.userData = response;
+        this.tag.tag = this.userData.username;
+        this.mediaProvider.postTag(this.tag).subscribe(response => {
+          console.log(response);
+        });
+      });
+      this.navCtrl.setRoot(ListPage);
+    }, (error: HttpErrorResponse) => {
+      console.log(error);
+    });
+  }
+
+
   postNewTag() {
     this.mediaProvider.postTag(this.tag).subscribe(response => {
       console.log(response);
-      this.tagArray = response;
     });
   }
+
+
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
     if (localStorage.getItem('token') == null) {

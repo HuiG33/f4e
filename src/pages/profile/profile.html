@@ -29,5 +29,9 @@
     <button ion-button block type="submit">Upload</button>
   </form>
 
+  <form (submit)="uploadProfilePic()">
+    <input type="file" name="file" (change)="setFile($event)">
+    <button ion-button block type="submit">Upload Profilepic</button>
+  </form>
 
 </ion-content>

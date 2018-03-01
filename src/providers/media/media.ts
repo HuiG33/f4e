@@ -72,7 +72,7 @@ export class MediaProvider {
   }
 
   getNewFiles() {
-    return this.http.get(this.apiUrl + '/media?start=1&limit=');
+    return this.http.get(this.apiUrl + '/media?start=&limit=10');
   }
 
   getUsernameByUserId(userId) {
@@ -148,7 +148,7 @@ export class MediaProvider {
       headers: new HttpHeaders().set('x-access-token',
         localStorage.getItem('token')),
     };
-    return this.http.post(this.apiUrl + '/comments', tag, settings);
+    return this.http.post(this.apiUrl + '/tags', tag, settings);
   }
 
 }
