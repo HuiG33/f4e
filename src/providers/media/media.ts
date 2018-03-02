@@ -75,6 +75,10 @@ export class MediaProvider {
     return this.http.get(this.apiUrl + '/media?start=&limit=10');
   }
 
+  get5LatestImages(){
+    return this.http.get(this.apiUrl + '/media?start=0&limit=5');
+  }
+
   getUsernameByUserId(userId) {
     const settings = {
       headers: new HttpHeaders().set('x-access-token',
@@ -171,4 +175,5 @@ export class MediaProvider {
     };
     return this.http.get(this.apiUrl + '/tags', settings);
   }
+
 }
