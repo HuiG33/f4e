@@ -16,22 +16,50 @@
 
 
 <ion-content padding>
-  <form (submit)="startUpload()">
-    <input type=file name="file" (change)="setFile($event)">
+  <form class="center" (submit)="uploadProfilePic()">
+    <ion-avatar>
+      <label for="file-input">
+        <img src="../assets/imgs/profilepicture.png">
+      </label>
+      <input id="file-input" type=file name="file" (change)="setFile($event)" style="display: none">
+    </ion-avatar>
+    <div class="information">
+      <h2>{{userName}}</h2>
+      <h3>{{userEmail}}</h3>
+      <h3>{{fullName}}</h3>
+    </div>
+    <button class="uploadButton" ion-button block type="submit">Upload</button>
+  </form>
+  <div class="information2">
+    <h2>{{userName}}</h2>
+    <h3>{{userEmail}}</h3>
+    <h3>{{fullName}}</h3>
+  </div>
+  <h2>Add events:</h2>
+  <form class="center" (submit)="startUpload()">
+    <input type="file" name="file" (change)="setFile($event)">
     <br>
-    <!--input [(ngModel)]="media.title" type="text" name="title"-->
     <ion-item>
       <ion-input type="text" [(ngModel)]="media.title" placeholder="Title" name="title"></ion-input>
     </ion-item>
     <br>
     <ion-textarea [(ngModel)]="media.description" placeholder="Enter a description" name="description"></ion-textarea>
     <br>
-    <button ion-button block type="submit">Upload</button>
+    <button class="uploadButton" ion-button block type="submit">Upload</button>
   </form>
+    <!--
+    <br>
+    -->
+    <!--input [(ngModel)]="media.title" type="text" name="title"-->
+    <!--
+    <br>
 
+
+    -->
+<!--
   <form (submit)="uploadProfilePic()">
     <input type="file" name="file" (change)="setFile($event)">
-    <button ion-button block type="submit">Upload Profilepic</button>
+    <button ion-button clear type="submit">Upload profile picture</button>
   </form>
-
+-->
 </ion-content>

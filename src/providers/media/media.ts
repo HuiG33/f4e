@@ -1,7 +1,7 @@
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {HomePage} from '../../pages/home/home';
-import {App, NavController} from 'ionic-angular';
+import {App} from 'ionic-angular';
 
 /*
   Generated class for the MediaProvider provider.
@@ -116,7 +116,7 @@ export class MediaProvider {
       });
   }
 
-  unLike(file_id: number) {
+  unLike(file_id) {
     const settings = {
       headers: new HttpHeaders().set('x-access-token',
         localStorage.getItem('token')),
@@ -151,4 +151,24 @@ export class MediaProvider {
     return this.http.post(this.apiUrl + '/tags', tag, settings);
   }
 
+  getFileWithSpecicifTag(tag) {
+    return this.http.get(this.apiUrl + '/tags/' + tag);
+  }
+
+
+  deleteTag(tag_id) {
+    const settings = {
+      headers: new HttpHeaders().set('x-access-token',
+        localStorage.getItem('token')),
+    };
+    this.http.delete(this.apiUrl + '/tags/' + tag_id, settings);
+  }
+
+  getTags() {
+    const settings = {
+      headers: new HttpHeaders().set('x-access-token',
+        localStorage.getItem('token')),
+    };
+    return this.http.get(this.apiUrl + '/tags', settings);
+  }
 }

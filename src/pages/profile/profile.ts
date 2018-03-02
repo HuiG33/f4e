@@ -22,11 +22,11 @@ import {Tags} from '../../interfaces/tags';
 export class ProfilePage {
 
   file: File;
-  tagArray: any;
-  userID: number;
-  user: any;
   picData: any;
   userData: any;
+  userName: string;
+  userEmail: string;
+  fullName: string;
 
   media: Media = {
     title: '',
@@ -34,11 +34,29 @@ export class ProfilePage {
   };
 
   tag: Tags = {
-    file_id: 525,
-    tag: 'logo'
+    file_id: null,
+    tag: ''
   };
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private mediaProvider: MediaProvider) {
+    //this.userName = navParams.get('username');
+    //this.userEmail = navParams.get('email');
+    //this.fullName = navParams.get('full_name');
+  }
+
+  getUserInformation(){
+    this.mediaProvider.getUserData().subscribe( response => {
+      console.log(response);
+      this.userName = response['username'];
+    });
+    this.mediaProvider.getUserData().subscribe( response => {
+      console.log(response);
+      this.userEmail = response['email'];
+    });
+    this.mediaProvider.getUserData().subscribe( response => {
+      console.log(response);
+      this.fullName = response['full_name'];
+    });
   }
 
   setFile(evt) {
@@ -91,13 +109,13 @@ export class ProfilePage {
     });
   }
 
-
+/*
   postNewTag() {
     this.mediaProvider.postTag(this.tag).subscribe(response => {
       console.log(response);
     });
   }
-
+*/
 
 
   ionViewDidLoad() {
@@ -106,6 +124,7 @@ export class ProfilePage {
         //this.router.navigate(['front']);
         this.navCtrl.setRoot(LoginPage);
     }
+    this.getUserInformation();
   }
 
 }
