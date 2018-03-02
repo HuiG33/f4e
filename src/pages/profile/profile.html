@@ -21,14 +21,13 @@
       <label for="file-input">
         <img src="../assets/imgs/profilepicture.png">
       </label>
-      <input id="file-input" type=file name="file" (change)="setFile($event)" style="display: none">
+      <input id="file-input" type="file" name="file" (change)="changeProfilePicture($event)" style="display: none"/>
     </ion-avatar>
     <div class="information">
       <h2>{{userName}}</h2>
       <h3>{{userEmail}}</h3>
       <h3>{{fullName}}</h3>
     </div>
-    <button class="uploadButton" ion-button block type="submit">Upload</button>
   </form>
   <div class="information2">
     <h2>{{userName}}</h2>

@@ -117,6 +117,11 @@ export class ProfilePage {
   }
 */
 
+  changeProfilePicture(evt) {
+    console.log("efwrehtrjyku");
+    this.setFile(evt);
+    this.uploadProfilePic();
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');

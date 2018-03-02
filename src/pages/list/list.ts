@@ -4,7 +4,6 @@ import {HttpErrorResponse} from '@angular/common/http';
 import {LoginPage} from '../login/login';
 import {MediaProvider} from '../../providers/media/media';
 import {EventPage} from '../event/event';
-import {ProfilePage} from '../profile/profile';
 
 
 @Component({

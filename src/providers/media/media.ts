@@ -151,7 +151,7 @@ export class MediaProvider {
     return this.http.post(this.apiUrl + '/tags', tag, settings);
   }
 
-  getFileWithSpecicifTag(tag) {
+  getFileWithSpecificTag(tag) {
     return this.http.get(this.apiUrl + '/tags/' + tag);
   }
 
