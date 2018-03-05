@@ -18,6 +18,7 @@ export class MediaProvider {
   isLiked: boolean;
   apiUrl = 'http://media.mw.metropolia.fi/wbma';
   nav = this.app.getActiveNav();
+  logged = false;
 
   constructor(private http: HttpClient, public app: App) {
   }
@@ -45,6 +46,17 @@ export class MediaProvider {
         console.log(error.error.message);
         this.status = error.error.message;
       });
+  }
+
+  isLogged() {
+    if (localStorage.getItem('token') != null) {
+      this.logged = true;
+      console.log(this.logged);
+    }
+    else {
+      this.logged = false;
+      console.log(this.logged);
+    }
   }
 
   register(user) {
@@ -77,6 +89,14 @@ export class MediaProvider {
 
   get5LatestImages(){
     return this.http.get(this.apiUrl + '/media?start=0&limit=5');
+  }
+
+  deleteFile(id) {
+    const settings = {
+      headers: new HttpHeaders().set('x-access-token',
+        localStorage.getItem('token')),
+    };
+    return this.http.delete(this.apiUrl + '/media/' + id, settings);
   }
 
   getUsernameByUserId(userId) {
@@ -147,7 +167,6 @@ export class MediaProvider {
   }
 
   postTag(tag) {
-    console.log(tag);
     const settings = {
       headers: new HttpHeaders().set('x-access-token',
         localStorage.getItem('token')),
@@ -174,6 +193,15 @@ export class MediaProvider {
         localStorage.getItem('token')),
     };
     return this.http.get(this.apiUrl + '/tags', settings);
+  }
+
+  searchMedia(media) {
+    console.log(media);
+    const settings = {
+      headers: new HttpHeaders().set('x-access-token',
+        localStorage.getItem('token')),
+    };
+    return this.http.post(this.apiUrl + '/media/search', media, settings);
   }
 
 }

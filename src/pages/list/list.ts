@@ -33,7 +33,11 @@ export class ListPage {
     if (localStorage.getItem('token') != null) {
       this.mediaProvider.getUserData().subscribe(response => {
         console.log('Welcome ' + response['full_name']);
-        this.mediaProvider.getNewFiles().subscribe(response => {
+        /*this.mediaProvider.getNewFiles().subscribe(response => {
+          console.log(response);
+          this.filesArray = response;
+        });*/
+        this.mediaProvider.getFileWithSpecificTag('event').subscribe(response => {
           console.log(response);
           this.filesArray = response;
         });

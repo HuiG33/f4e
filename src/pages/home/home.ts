@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {MediaProvider} from '../../providers/media/media';
 import {EventPage} from '../event/event';
+import {HttpErrorResponse} from '@angular/common/http';
+import {Media} from '../../interfaces/media';
+import {Search} from '../../interfaces/search';
 
 @Component({
   selector: 'page-home',
@@ -11,6 +14,15 @@ import {EventPage} from '../event/event';
 export class HomePage {
 
   latestImgsArray: any;
+
+  media: Media = {
+    title: '',
+    description: ''
+  };
+
+  search: Search = {
+    title: ''
+  };
 
   doRefresh(refresher) {
     console.log('Begin async operation', refresher);
@@ -23,6 +35,14 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, private mediaProvider: MediaProvider) {
 
+  }
+
+  searchEvent() {
+    this.mediaProvider.searchMedia(this.search).subscribe(response => {
+      console.log(response);
+    }, (error: HttpErrorResponse) => {
+      console.log(error);
+    });
   }
 
   ionViewDidLoad(){

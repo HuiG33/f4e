@@ -19,7 +19,8 @@
   <form class="center" (submit)="uploadProfilePic()">
     <ion-avatar>
       <label for="file-input">
-        <img src="../assets/imgs/profilepicture.png">
+        <img src="http://media.mw.metropolia.fi/wbma/uploads/{{profilePicName}}" *ngIf="profilePicName != null">
+        <img src="../assets/imgs/profilepicture.png" *ngIf="profilePicName == null">
       </label>
       <input id="file-input" type="file" name="file" (change)="changeProfilePicture($event)" style="display: none"/>
     </ion-avatar>
@@ -46,6 +47,8 @@
     <br>
     <button class="uploadButton" ion-button block type="submit">Upload</button>
   </form>
+
+
     <!--
     <br>
     -->

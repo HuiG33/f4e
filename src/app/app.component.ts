@@ -8,6 +8,7 @@ import { ListPage } from '../pages/list/list';
 import {LoginPage} from '../pages/login/login';
 import {ProfilePage} from '../pages/profile/profile';
 import {RegisterPage} from '../pages/register/register';
+import {MediaProvider} from '../providers/media/media';
 
 @Component({
   templateUrl: 'app.html'
@@ -19,7 +20,7 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private mediaProvider: MediaProvider) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation

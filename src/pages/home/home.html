@@ -17,30 +17,31 @@
   </ion-refresher>
 
   <h3>Friends 4 Events</h3>
-<!--
-  <ion-slides autoplay="3000" pager="true" loop="true" speed="500">
-    <ion-slide *ngFor="let image of latestImgsArray" (click)="itemTapped($event, image.file_id, image.title, image.description, image.user_id, image.filename, image.time_added)">
-      <img class="slidingImg" src="http://media.mw.metropolia.fi/wbma/uploads/{{image.filename.split('.')[0]+'-tn320.png'}}">
-      <h5>{{image.description}}</h5>
-    </ion-slide>
-  </ion-slides>
--->
+  <!--
+    <ion-slides autoplay="3000" pager="true" loop="true" speed="500">
+      <ion-slide *ngFor="let image of latestImgsArray" (click)="itemTapped($event, image.file_id, image.title, image.description, image.user_id, image.filename, image.time_added)">
+        <img class="slidingImg" src="http://media.mw.metropolia.fi/wbma/uploads/{{image.filename.split('.')[0]+'-tn320.png'}}">
+        <h5>{{image.description}}</h5>
+      </ion-slide>
+    </ion-slides>
+  -->
   <ion-slides autoplay="" pager="true" loop="true" speed="500">
-    <ion-slide *ngFor="let image of latestImgsArray" (click)="itemTapped($event, image.file_id, image.title, image.description, image.user_id, image.filename, image.time_added)">
-      <img class="slidingImg" src="http://media.mw.metropolia.fi/wbma/uploads/{{image.filename.split('.')[0]+'-tn320.png'}}">
+    <ion-slide *ngFor="let image of latestImgsArray"
+               (click)="itemTapped($event, image.file_id, image.title, image.description, image.user_id, image.filename, image.time_added)">
+      <img class="slidingImg"
+           src="http://media.mw.metropolia.fi/wbma/uploads/{{image.filename.split('.')[0]+'-tn320.png'}}">
       <h5>{{image.description}}</h5>
     </ion-slide>
   </ion-slides>
   <div>
 
   </div>
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-  <ion-img width="80" height="80" src="../assets/imgs/image.png"></ion-img>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
-
+    <ion-item>
+      <ion-input type="text" [(ngModel)]="search.title" placeholder="Title" name="searchtitle"></ion-input>
+    </ion-item>
+    <br>
+    <button ion-button block (click)="searchEvent()">Search events</button>
 
 </ion-content>
 

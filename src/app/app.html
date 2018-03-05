@@ -11,8 +11,24 @@
 
   <ion-content>
     <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
+      <button menuClose ion-item (click)="openPage(pages[0])">
+        {{pages[0].title}}
+        <ion-icon class="ion-ios-arrow-forward"></ion-icon>
+      </button>
+      <button menuClose ion-item (click)="openPage(pages[1])">
+        {{pages[1].title}}
+        <ion-icon class="ion-ios-arrow-forward"></ion-icon>
+      </button>
+      <button menuClose ion-item (click)="openPage(pages[2])">
+        {{pages[2].title}}
+        <ion-icon class="ion-ios-arrow-forward"></ion-icon>
+      </button>
+      <button menuClose ion-item (click)="openPage(pages[3])">
+        {{pages[3].title}}
+        <ion-icon class="ion-ios-arrow-forward"></ion-icon>
+      </button>
+      <button menuClose ion-item (click)="openPage(pages[4])">
+        {{pages[4].title}}
         <ion-icon class="ion-ios-arrow-forward"></ion-icon>
       </button>
     </ion-list>
