@@ -30,9 +30,9 @@ export class ListPage {
   }
   ionViewDidLoad() {
     console.log('ionViewDidLoad ProfilePage');
-    if (localStorage.getItem('token') != null) {
+    /*if (localStorage.getItem('token') != null) {
       this.mediaProvider.getUserData().subscribe(response => {
-        console.log('Welcome ' + response['full_name']);
+        console.log('Welcome ' + response['full_name']);*/
         /*this.mediaProvider.getNewFiles().subscribe(response => {
           console.log(response);
           this.filesArray = response;
@@ -41,15 +41,16 @@ export class ListPage {
           console.log(response);
           this.filesArray = response;
         });
-      }, (error: HttpErrorResponse) => {
+      /*}, (error: HttpErrorResponse) => {
         console.log(error);
         //this.router.navigate(['login']);
-        this.navCtrl.setRoot(LoginPage)
+        //this.navCtrl.setRoot(LoginPage)
       });
     } else {
+      console.log('moi');
       //this.router.navigate(['login']);
-      this.navCtrl.setRoot(LoginPage);
-    }
+      //this.navCtrl.setRoot(LoginPage);
+    }*/
   }
 
   itemTapped(event, item, file_id, title, description, user_id, filename, time_added) {

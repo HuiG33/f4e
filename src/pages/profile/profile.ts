@@ -174,7 +174,9 @@ export class ProfilePage {
       //this.router.navigate(['front']);
       this.navCtrl.setRoot(LoginPage);
     }
-    this.getUserInformation();
+    else {
+      this.getUserInformation();
+    }
   }
 
 }
