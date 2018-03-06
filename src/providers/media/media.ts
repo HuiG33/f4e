@@ -1,7 +1,6 @@
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {App} from 'ionic-angular';
-import {HomePage} from '../../pages/home/home';
 
 /*
   Generated class for the MediaProvider provider.
@@ -41,7 +40,7 @@ export class MediaProvider {
         console.log(response['token']);
         localStorage.setItem('token', response['token']);
         //this.router.navigate(['front']);
-        this.nav.setRoot(HomePage);
+        //this.nav.setRoot(HomePage);
         this.logged = true;
       }, (error: HttpErrorResponse) => {
         console.log(error.error.message);
@@ -51,7 +50,6 @@ export class MediaProvider {
 
   logout() {
     localStorage.removeItem('token');
-    this.nav.setRoot(HomePage);
   }
 
   isLogged() {

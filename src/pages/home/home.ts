@@ -50,6 +50,7 @@ export class HomePage {
     this.mediaProvider.get5LatestImages().subscribe(response => {
       console.log(response);
       this.latestImgsArray = response;
+      console.log(this.mediaProvider.logged);
     });
   }
 

@@ -19,15 +19,15 @@
         {{pages[1].title}}
         <ion-icon class="ion-ios-arrow-forward"></ion-icon>
       </button>
-      <button menuClose ion-item (click)="openPage(pages[2])">
+      <button menuClose ion-item (click)="openPage(pages[2])" *ngIf="!mediaProvider.logged">
         {{pages[2].title}}
         <ion-icon class="ion-ios-arrow-forward"></ion-icon>
       </button>
-      <button menuClose ion-item (click)="openPage(pages[3])">
+      <button menuClose ion-item (click)="openPage(pages[3])" *ngIf="mediaProvider.logged">
         {{pages[3].title}}
         <ion-icon class="ion-ios-arrow-forward"></ion-icon>
       </button>
-      <button menuClose ion-item (click)="openPage(pages[4])">
+      <button menuClose ion-item (click)="openPage(pages[4])" *ngIf="mediaProvider.logged">
         {{pages[4].title}}
         <ion-icon class="ion-ios-arrow-forward"></ion-icon>
       </button>

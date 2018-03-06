@@ -25,7 +25,6 @@ export class LogoutPage {
     this.mediaProvider.logout();
     this.mediaProvider.logged = false;
     this.navCtrl.setRoot(HomePage);
-    console.log(this.mediaProvider.logged);
   }
 
 }

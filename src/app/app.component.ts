@@ -8,6 +8,7 @@ import { ListPage } from '../pages/list/list';
 import {LoginPage} from '../pages/login/login';
 import {ProfilePage} from '../pages/profile/profile';
 import {LogoutPage} from '../pages/logout/logout';
+import {MediaProvider} from '../providers/media/media';
 
 @Component({
   templateUrl: 'app.html'
@@ -19,7 +20,7 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private mediaProvider: MediaProvider) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -35,6 +36,7 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
+      console.log(this.mediaProvider.logged);
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
