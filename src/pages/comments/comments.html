@@ -14,12 +14,6 @@
 
 
 <ion-content padding>
-  <ion-list>
-    <ion-item *ngFor="let user of userArray; let i=index">
-      {{user.username}}:
-      {{commentsArray[i].comment}}
-    </ion-item>
-  </ion-list>
   <form (submit)="postNewComment()">
     <ion-item>
       <ion-input type="text" [(ngModel)]="comment.comment" placeholder="Write a comment" name="comment"></ion-input>
@@ -27,4 +21,11 @@
     <br>
     <button ion-button block type="submit">Comment</button>
   </form>
+
+  <ion-list>
+    <ion-item *ngFor="let user of userArray.slice().reverse(); let i=index">
+      {{user.username}}:
+      {{commentsArray.slice().reverse()[i].comment}}
+    </ion-item>
+  </ion-list>
 </ion-content>

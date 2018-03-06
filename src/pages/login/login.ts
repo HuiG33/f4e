@@ -3,6 +3,7 @@ import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {MediaProvider} from '../../providers/media/media';
 import {HttpErrorResponse} from '@angular/common/http';
 import {HomePage} from '../home/home';
+import {RegisterPage} from '../register/register';
 
 /**
  * Generated class for the LoginPage page.
@@ -24,6 +25,14 @@ export class LoginPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public mediaProvider: MediaProvider) {
   }
 
+  openPage() {
+    this.navCtrl.setRoot(RegisterPage);
+  }
+
+  login() {
+    this.mediaProvider.login();
+    this.navCtrl.setRoot(HomePage);
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
     if (localStorage.getItem('token') != null) {

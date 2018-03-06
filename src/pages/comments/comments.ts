@@ -62,7 +62,10 @@ export class CommentsPage {
   postNewComment(){
     this.mediaProvider.commentEvent(this.comment).subscribe(response => {
       console.log(response);
-      location.reload();
+      this.navCtrl.pop();
+      this.navCtrl.push(CommentsPage, {
+        file_id: this.fileID
+      });
     });
   }
 

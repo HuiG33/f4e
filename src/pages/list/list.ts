@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import {HttpErrorResponse} from '@angular/common/http';
 import {LoginPage} from '../login/login';
 import {MediaProvider} from '../../providers/media/media';
 import {EventPage} from '../event/event';
@@ -29,7 +28,7 @@ export class ListPage {
 
   }
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ProfilePage');
+    console.log('ionViewDidLoad EventsList');
     /*if (localStorage.getItem('token') != null) {
       this.mediaProvider.getUserData().subscribe(response => {
         console.log('Welcome ' + response['full_name']);*/
@@ -54,15 +53,19 @@ export class ListPage {
   }
 
   itemTapped(event, item, file_id, title, description, user_id, filename, time_added) {
-    // That's right, we're pushing to ourselves!
-    this.navCtrl.push(EventPage, {
-      item: item,
-      file_id: file_id,
-      title: title,
-      description: description,
-      user_id: user_id,
-      filename: filename,
-      time_added: time_added
-    });
+    // push the params to EventPage
+    if (localStorage.getItem('token') != null) {
+      this.navCtrl.push(EventPage, {
+        item: item,
+        file_id: file_id,
+        title: title,
+        description: description,
+        user_id: user_id,
+        filename: filename,
+        time_added: time_added
+      });
+    } else {
+      this.navCtrl.setRoot(LoginPage);
+    }
   }
 }

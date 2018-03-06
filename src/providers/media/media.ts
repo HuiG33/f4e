@@ -1,6 +1,7 @@
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {App} from 'ionic-angular';
+import {HomePage} from '../../pages/home/home';
 
 /*
   Generated class for the MediaProvider provider.
@@ -40,6 +41,7 @@ export class MediaProvider {
         console.log(response['token']);
         localStorage.setItem('token', response['token']);
         //this.router.navigate(['front']);
+        this.nav.setRoot(HomePage); // tämä ei toimi miksi......!?!?!?
         this.logged = true;
       }, (error: HttpErrorResponse) => {
         console.log(error.error.message);
@@ -130,13 +132,7 @@ export class MediaProvider {
       file_id: file_id,
     };
 
-    this.http.post(this.apiUrl + '/favourites', body, settings).
-      subscribe(response => {
-        console.log(response);
-        this.isLiked = true;
-      }, (error: HttpErrorResponse) => {
-        console.log(error.error.message);
-      });
+    return this.http.post(this.apiUrl + '/favourites', body, settings);
   }
 
   unLike(file_id) {
@@ -144,13 +140,7 @@ export class MediaProvider {
       headers: new HttpHeaders().set('x-access-token',
         localStorage.getItem('token')),
     };
-    this.http.delete(this.apiUrl + '/favourites/file/' + file_id, settings).
-      subscribe(response => {
-        console.log(response);
-        this.isLiked = false;
-      }, (error: HttpErrorResponse) => {
-        console.log(error.error.message);
-      });
+    return this.http.delete(this.apiUrl + '/favourites/file/' + file_id, settings);
   }
 
   getLikesByFileId(fileid) {

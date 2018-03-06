@@ -16,7 +16,7 @@
 <ion-content padding>
   <ion-card>
 
-    <ion-item>
+    <ion-item (click)="redirectToUserThatPosted()">
       <ion-avatar item-start>
         <ion-icon class="ion-ios-contact"></ion-icon>
 
@@ -33,13 +33,15 @@
     </ion-card-content>
     <ion-row>
       <ion-col>
-        <button ion-button icon-left clear small (click)="mediaProvider.like(fileID)" *ngIf="!isLiked" >
+        <button ion-button icon-left clear small (click)="itemClick()">
           <ion-icon name="thumbs-up"></ion-icon>
-          <div>{{likeamount}} Likes</div>
+          <div>{{likeamount}} Sign up for event</div>
         </button>
-        <button ion-button icon-left clear small (click)="mediaProvider.unLike(fileID)" *ngIf="isLiked">
-          <ion-icon name="thumbs-down"></ion-icon>
-          <div>{{likeamount}} Likes</div>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-left clear small (click)="showUsersSigned()">
+          <ion-icon name="contacts"></ion-icon>
+          <div>List of signed people</div>
         </button>
       </ion-col>
       <ion-col>

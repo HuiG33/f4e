@@ -15,6 +15,7 @@ import {RegisterPage} from '../pages/register/register';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {EventPage} from '../pages/event/event';
 import {CommentsPage} from '../pages/comments/comments';
+import {ViewprofilePage} from '../pages/viewprofile/viewprofile';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {CommentsPage} from '../pages/comments/comments';
     ProfilePage,
     RegisterPage,
     EventPage,
-    CommentsPage
+    CommentsPage,
+    ViewprofilePage
   ],
   imports: [
     BrowserModule,
@@ -41,7 +43,8 @@ import {CommentsPage} from '../pages/comments/comments';
     ProfilePage,
     RegisterPage,
     EventPage,
-    CommentsPage
+    CommentsPage,
+    ViewprofilePage
   ],
   providers: [
     StatusBar,

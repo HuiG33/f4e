@@ -5,6 +5,7 @@ import {EventPage} from '../event/event';
 import {HttpErrorResponse} from '@angular/common/http';
 import {Media} from '../../interfaces/media';
 import {Search} from '../../interfaces/search';
+import {LoginPage} from '../login/login';
 
 @Component({
   selector: 'page-home',
@@ -53,14 +54,18 @@ export class HomePage {
   }
 
   itemTapped(event, file_id, title, description, user_id, filename, time_added) {
-    this.navCtrl.push(EventPage, {
-      file_id: file_id,
-      title: title,
-      description: description,
-      user_id: user_id,
-      filename: filename,
-      time_added: time_added
-    });
+    if (localStorage.getItem('token') != null) {
+      this.navCtrl.push(EventPage, {
+        file_id: file_id,
+        title: title,
+        description: description,
+        user_id: user_id,
+        filename: filename,
+        time_added: time_added
+      });
+    } else {
+      this.navCtrl.setRoot(LoginPage);
+    }
   }
 
 }
