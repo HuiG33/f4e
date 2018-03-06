@@ -7,6 +7,7 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import {LoginPage} from '../pages/login/login';
 import {ProfilePage} from '../pages/profile/profile';
+import {LogoutPage} from '../pages/logout/logout';
 
 @Component({
   templateUrl: 'app.html'
@@ -27,7 +28,7 @@ export class MyApp {
       { title: 'Events', component: ListPage },
       { title: 'Login', component: LoginPage },
       { title: 'Profile', component: ProfilePage },
-      //{ title: 'Register', component: RegisterPage }
+      { title: 'Logout', component: LogoutPage }
     ];
 
   }
@@ -40,6 +41,7 @@ export class MyApp {
       this.splashScreen.hide();
     });
   }
+
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario

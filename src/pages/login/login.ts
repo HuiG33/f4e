@@ -35,6 +35,8 @@ export class LoginPage {
       this.mediaProvider.getUserData().subscribe(response => {
         //this.router.navigate(['front']);
         this.navCtrl.setRoot(HomePage);
+        this.mediaProvider.logged = true;
+        console.log(this.mediaProvider.logged);
       }, (error: HttpErrorResponse) => {
         console.log(error);
       });

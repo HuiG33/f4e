@@ -49,6 +49,11 @@ export class MediaProvider {
       });
   }
 
+  logout() {
+    localStorage.removeItem('token');
+    this.nav.setRoot(HomePage);
+  }
+
   isLogged() {
     if (localStorage.getItem('token') != null) {
       this.logged = true;
