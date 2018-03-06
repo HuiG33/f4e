@@ -1,6 +1,5 @@
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {HomePage} from '../../pages/home/home';
 import {App} from 'ionic-angular';
 
 /*
@@ -41,7 +40,7 @@ export class MediaProvider {
         console.log(response['token']);
         localStorage.setItem('token', response['token']);
         //this.router.navigate(['front']);
-        this.nav.setRoot(HomePage);
+        this.logged = true;
       }, (error: HttpErrorResponse) => {
         console.log(error.error.message);
         this.status = error.error.message;
