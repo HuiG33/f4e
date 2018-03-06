@@ -29,10 +29,6 @@ export class LoginPage {
     this.navCtrl.setRoot(RegisterPage);
   }
 
-  login() {
-    this.mediaProvider.login();
-    this.navCtrl.setRoot(HomePage);
-  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
     if (localStorage.getItem('token') != null) {

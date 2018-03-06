@@ -41,7 +41,7 @@ export class MediaProvider {
         console.log(response['token']);
         localStorage.setItem('token', response['token']);
         //this.router.navigate(['front']);
-        this.nav.setRoot(HomePage); // tämä ei toimi miksi......!?!?!?
+        this.nav.setRoot(HomePage);
         this.logged = true;
       }, (error: HttpErrorResponse) => {
         console.log(error.error.message);

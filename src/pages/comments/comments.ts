@@ -63,7 +63,9 @@ export class CommentsPage {
     this.mediaProvider.commentEvent(this.comment).subscribe(response => {
       console.log(response);
       this.navCtrl.pop();
+
       this.navCtrl.push(CommentsPage, {
+
         file_id: this.fileID
       });
     });
