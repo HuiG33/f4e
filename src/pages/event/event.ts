@@ -108,7 +108,7 @@ export class EventPage {
         break;
       }
     }
-    console.log("2 this"+ this.isLiked)
+    console.log("2 this"+ this.isLiked);
     if (!this.isLiked) {
       this.mediaProvider.like(this.fileID).subscribe(response => {
         console.log(response);
