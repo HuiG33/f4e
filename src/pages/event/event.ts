@@ -91,43 +91,6 @@ export class EventPage {
     });
   }
 
-  /*
-      // NOT WORKING YET
-      itemClick() {
-        this.getLikesByFileID();
-        console.log("1 this"+this.isLiked);
-        for (let i = 0; i < this.likes.length; i++) {
-          //this.likeIdArray.push(this.likes[i]);
-          //console.log(this.loggedUserId);
-          //console.log(this.likes[i].user_id);
-          if (this.loggedUserId == this.likes[i].user_id) {
-            this.isLiked = true;
-            break;
-          }
-        }
-        console.log("2 this"+ this.isLiked);
-        if (!this.isLiked) {
-          this.mediaProvider.like(this.fileID).subscribe(response => {
-            console.log(response);
-            this.likeamount++;
-          }, (error: HttpErrorResponse) => {
-            console.log(error.error.message);
-          });
-          console.log("3"+this.isLiked);
-        }
-        else if (this.isLiked) {
-          this.mediaProvider.unLike(this.fileID).subscribe(response => {
-            console.log(response);
-            this.likeamount--;
-          }, (error: HttpErrorResponse) => {
-            console.log(error.error.message);
-          });
-        }
-        this.isLiked = !this.isLiked;
-        console.log("4"+this.isLiked);
-      }
-  */
-
   showUsersSigned() {
     let actionsheet = this.actCtrl.create({
       title: 'Signed users',
@@ -158,28 +121,6 @@ export class EventPage {
           actionsheet.addButton(button);
         });
     }
-
-    /*this.mediaProvider.getLikesByFileId(this.fileID).subscribe(response => {
-      //console.log(response);
-      this.likes = response;
-      console.log(this.likes);
-      for (let userNames of this.likes) {
-        this.mediaProvider.getUsernameByUserId(userNames.user_id).subscribe(response => {
-            console.log(response);
-            alert.addButton({
-              text: response['username']
-            });
-        });
-      }
-    });*/
-
-    /*alert.addButton({
-      text: 'Username'
-    });
-    alert.addButton({
-      text: 'Username'
-    });*/
-
     actionsheet.present();
   }
 
