@@ -50,8 +50,10 @@ export class HomePage {
     this.mediaProvider.get5LatestImages().subscribe(response => {
       console.log(response);
       this.latestImgsArray = response;
-      console.log(this.mediaProvider.logged);
     });
+    if (localStorage.getItem('token') != null) {
+      this.mediaProvider.logged = true;
+    }
   }
 
   itemTapped(event, file_id, title, description, user_id, filename, time_added) {

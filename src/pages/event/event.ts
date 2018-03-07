@@ -6,7 +6,6 @@ import {
 import {MediaProvider} from '../../providers/media/media';
 import {CommentsPage} from '../comments/comments';
 import {ViewprofilePage} from '../viewprofile/viewprofile';
-import {HttpErrorResponse} from '@angular/common/http';
 
 /**
  * Generated class for the EventPage page.
@@ -97,7 +96,7 @@ export class EventPage {
       this.commentsAmount = this.comments.length;
     });
   }
-  
+/*
     // NOT WORKING YET
     itemClick() {
       this.getLikesByFileID();
@@ -132,7 +131,7 @@ export class EventPage {
       this.isLiked = !this.isLiked;
       console.log("4"+this.isLiked);
     }
-
+*/
 
   showUsersSigned() {
     let actionsheet = this.actCtrl.create({
@@ -194,6 +193,18 @@ export class EventPage {
       username: this.userName,
       user_id: this.userID,
       email: this.userWhoPostedEmail,
+    });
+  }
+
+  like() {
+    this.mediaProvider.like(this.fileID).subscribe(response => {
+      console.log(response);
+    });
+  }
+
+  unlike() {
+    this.mediaProvider.unLike(this.fileID).subscribe(response => {
+      console.log(response);
     });
   }
 

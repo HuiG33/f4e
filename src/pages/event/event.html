@@ -32,12 +32,25 @@
       <p>{{description}}</p>
     </ion-card-content>
     <ion-row>
+      <!--
       <ion-col>
         <button ion-button icon-left clear small (click)="itemClick()">
           <ion-icon name="thumbs-up"></ion-icon>
           <div>{{likeamount}} Sign up for event</div>
         </button>
       </ion-col>
+      -->
+      <ion-col>
+        <button ion-button icon-left clear small (click)="like()">
+          <ion-icon name="thumbs-up"></ion-icon>
+          <div>{{likeamount}} Likes</div>
+        </button>
+        <button ion-button icon-left clear small (click)="unlike()">
+          <ion-icon name="thumbs-down"></ion-icon>
+          <div>{{likeamount}} Likes</div>
+        </button>
+      </ion-col>
+
       <ion-col>
         <button ion-button icon-left clear small (click)="showUsersSigned()">
           <ion-icon name="contacts"></ion-icon>

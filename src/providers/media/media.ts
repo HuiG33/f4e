@@ -22,34 +22,6 @@ export class MediaProvider {
   constructor(private http: HttpClient, public app: App) {
   }
 
-  /*
-  public login() {
-    console.log('uname: ' + this.username);
-    console.log('pwd: ' + this.password);
-
-    const body = {
-      username: this.username,
-      password: this.password,
-    };
-
-    // this is optional
-    const settings = {
-      headers: new HttpHeaders().set('Content-Type', 'application/json'),
-    };
-    this.http.post(this.apiUrl + '/login', body, settings).
-      subscribe(response => {
-        console.log(response['token']);
-        localStorage.setItem('token', response['token']);
-        //this.router.navigate(['front']);
-        //this.nav.setRoot(HomePage);
-        this.logged = true;
-      }, (error: HttpErrorResponse) => {
-        console.log(error.error.message);
-        this.status = error.error.message;
-      });
-  }
-*/
-
   login() {
     const body = {
       username: this.username,
@@ -138,7 +110,7 @@ export class MediaProvider {
     return this.http.get(this.apiUrl + '/comments/file/' + fileId);
   }
 
-  like(file_id: number) {
+  like(file_id) {
     const settings = {
       headers: new HttpHeaders().set('x-access-token',
         localStorage.getItem('token')),
@@ -148,6 +120,8 @@ export class MediaProvider {
       file_id: file_id,
     };
 
+    console.log("like");
+    console.log(file_id);
     return this.http.post(this.apiUrl + '/favourites', body, settings);
   }
 
@@ -156,6 +130,8 @@ export class MediaProvider {
       headers: new HttpHeaders().set('x-access-token',
         localStorage.getItem('token')),
     };
+    console.log("unlike");
+    console.log(file_id);
     return this.http.delete(this.apiUrl + '/favourites/file/' + file_id, settings);
   }
 

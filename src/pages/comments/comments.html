@@ -23,9 +23,8 @@
   </form>
 
   <ion-list>
-    <ion-item *ngFor="let user of userArray.slice().reverse(); let i=index">
-      {{user.username}}:
-      {{commentsArray.slice().reverse()[i].comment}}
+    <ion-item *ngFor="let comment of allComments">
+      {{comment}}
     </ion-item>
   </ion-list>
 </ion-content>

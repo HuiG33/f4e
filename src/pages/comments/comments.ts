@@ -23,6 +23,8 @@ export class CommentsPage {
   userObject: any;
   userArray: Array<{user_id: number, username: string, email: string, full_name: string}> = [];
   userID: number;
+  allComments: any = [];
+  allUserIds: any = [];
 
   comment: Comment = {
     file_id: null,
@@ -47,15 +49,13 @@ export class CommentsPage {
       for (let i=0; i < this.commentsArray.length; i++){
         this.userID = this.commentsArray[i].user_id;
         console.log(this.userID);
-        //this.getUserNameByUserId(this.userID);
-        //this.userArray.push(this.userName);
-        //console.log(this.userName);
+        this.allUserIds.push(this.userID);
         this.mediaProvider.getUsernameByUserId(this.userID).subscribe(response => {
-          //console.log(response);
-          this.userObject = response;
-          this.userArray.push(this.userObject);
+          //console.log(response['username']);
+          this.allComments.push(response['username']+": "+this.commentsArray[i].comment);
         });
       }
+      console.log(this.allComments);
     });
   }
 
