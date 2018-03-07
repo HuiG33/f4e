@@ -22,6 +22,7 @@ export class MediaProvider {
   constructor(private http: HttpClient, public app: App) {
   }
 
+  /*
   public login() {
     console.log('uname: ' + this.username);
     console.log('pwd: ' + this.password);
@@ -46,6 +47,18 @@ export class MediaProvider {
         console.log(error.error.message);
         this.status = error.error.message;
       });
+  }
+*/
+
+  login() {
+    const body = {
+      username: this.username,
+      password: this.password,
+    };
+    const settings = {
+      headers: new HttpHeaders().set('Content-Type', 'application/json'),
+    };
+    return this.http.post(this.apiUrl + '/login', body, settings);
   }
 
   logout() {

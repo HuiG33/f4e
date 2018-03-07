@@ -1,5 +1,8 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {
+  AlertController, IonicPage, NavController,
+  NavParams,
+} from 'ionic-angular';
 import {MediaProvider} from '../../providers/media/media';
 import {HttpErrorResponse} from '@angular/common/http';
 import {HomePage} from '../home/home';
@@ -22,11 +25,34 @@ export class LoginPage {
   username: string;
   password: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public mediaProvider: MediaProvider) {
+  constructor(
+    public navCtrl: NavController, public navParams: NavParams,
+    public mediaProvider: MediaProvider, public alertCtrl: AlertController) {
   }
 
   openPage() {
     this.navCtrl.setRoot(RegisterPage);
+  }
+
+  login() {
+    this.mediaProvider.login().subscribe(response => {
+      console.log(response['token']);
+      localStorage.setItem('token', response['token']);
+      this.navCtrl.setRoot(HomePage);
+      this.mediaProvider.logged = true;
+    },(error: HttpErrorResponse) => {
+      console.log(error);
+      this.showAlert();
+    });
+  }
+
+  showAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Login failed',
+      subTitle: 'Wrong username or password!',
+      buttons: ['OK'],
+    });
+    alert.present();
   }
 
   ionViewDidLoad() {
@@ -42,7 +68,5 @@ export class LoginPage {
       });
     }
   }
-
-
 
 }
