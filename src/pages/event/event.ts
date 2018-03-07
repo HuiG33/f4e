@@ -33,7 +33,7 @@ export class EventPage {
   likeamount: any;
   comments: any;
   commentsAmount: any;
-  isLiked: boolean = true;
+  isLiked: boolean = false;
   likesArray: any;
   userWhoPostedEmail: string;
   count: number;
@@ -46,7 +46,8 @@ export class EventPage {
 
   constructor(
     public navCtrl: NavController, public navParams: NavParams,
-    private mediaProvider: MediaProvider, public actCtrl: ActionSheetController) {
+    private mediaProvider: MediaProvider,
+    public actCtrl: ActionSheetController) {
     this.fileID = navParams.get('file_id');
     this.title = this.navParams.get('title');
     this.description = this.navParams.get('description');
@@ -72,20 +73,22 @@ export class EventPage {
     });
   }
 
-  checkIfLiked() {
-    this.mediaProvider.getAllLikes().subscribe(response => {
-      this.likesArray = response;
-      this.likesArray.forEach(data => {
-        if (data.file_id == this.fileID) {
-          this.isLiked = true;
-        }
-        else {
-          this.isLiked = false;
-        }
+  /*
+    checkIfLiked() {
+      this.mediaProvider.getAllLikes().subscribe(response => {
+        this.likesArray = response;
+        this.likesArray.forEach(data => {
+          if (data.file_id == this.fileID) {
+            this.isLiked = true;
+          }
+          else {
+            this.isLiked = false;
+          }
+        });
       });
-    });
-    console.log(this.isLiked);
-  }
+      console.log(this.isLiked);
+    }
+  */
 
   getCommentsAmountByFileId() {
     this.mediaProvider.getCommentsByFileId(this.fileID).subscribe(response => {
@@ -94,41 +97,42 @@ export class EventPage {
       this.commentsAmount = this.comments.length;
     });
   }
-
-  // NOT WORKING YET
-  itemClick() {
-    this.getLikesByFileID();
-    console.log("1 this"+this.isLiked);
-    for (let i = 0; i < this.likes.length; i++) {
-      //this.likeIdArray.push(this.likes[i]);
-      //console.log(this.loggedUserId);
-      //console.log(this.likes[i].user_id);
-      if (this.loggedUserId == this.likes[i].user_id) {
-        this.isLiked = true;
-        break;
+  
+    // NOT WORKING YET
+    itemClick() {
+      this.getLikesByFileID();
+      console.log("1 this"+this.isLiked);
+      for (let i = 0; i < this.likes.length; i++) {
+        //this.likeIdArray.push(this.likes[i]);
+        //console.log(this.loggedUserId);
+        //console.log(this.likes[i].user_id);
+        if (this.loggedUserId == this.likes[i].user_id) {
+          this.isLiked = true;
+          break;
+        }
       }
+      console.log("2 this"+ this.isLiked);
+      if (!this.isLiked) {
+        this.mediaProvider.like(this.fileID).subscribe(response => {
+          console.log(response);
+          this.likeamount++;
+        }, (error: HttpErrorResponse) => {
+          console.log(error.error.message);
+        });
+        console.log("3"+this.isLiked);
+      }
+      else if (this.isLiked) {
+        this.mediaProvider.unLike(this.fileID).subscribe(response => {
+          console.log(response);
+          this.likeamount--;
+        }, (error: HttpErrorResponse) => {
+          console.log(error.error.message);
+        });
+      }
+      this.isLiked = !this.isLiked;
+      console.log("4"+this.isLiked);
     }
-    console.log("2 this"+ this.isLiked);
-    if (!this.isLiked) {
-      this.mediaProvider.like(this.fileID).subscribe(response => {
-        console.log(response);
-        this.likeamount++;
-      }, (error: HttpErrorResponse) => {
-        console.log(error.error.message);
-      });
-      console.log("3"+this.isLiked);
-    }
-    else if (this.isLiked) {
-      this.mediaProvider.unLike(this.fileID).subscribe(response => {
-        console.log(response);
-        this.likeamount--;
-      }, (error: HttpErrorResponse) => {
-        console.log(error.error.message);
-      });
-    }
-    this.isLiked = !this.isLiked;
-    console.log("4"+this.isLiked);
-  }
+
 
   showUsersSigned() {
     let actionsheet = this.actCtrl.create({
@@ -207,7 +211,7 @@ export class EventPage {
     this.getUsernameByUserID();
     this.getLikesByFileID();
     this.getCommentsAmountByFileId();
-    this.checkIfLiked();
+    //this.checkIfLiked();
   }
 
   itemTapped(event) {
