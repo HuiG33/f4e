@@ -18,6 +18,7 @@ import {CommentsPage} from '../pages/comments/comments';
 import {ViewprofilePage} from '../pages/viewprofile/viewprofile';
 import {LogoutPage} from '../pages/logout/logout';
 import {SearchedeventsPage} from '../pages/searchedevents/searchedevents';
+import {ReversePipe} from '../pipes/reverse/reverse';
 
 @NgModule({
   declarations: [
@@ -31,12 +32,13 @@ import {SearchedeventsPage} from '../pages/searchedevents/searchedevents';
     CommentsPage,
     ViewprofilePage,
     LogoutPage,
-    SearchedeventsPage
+    SearchedeventsPage,
+    ReversePipe
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule
+    HttpClientModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

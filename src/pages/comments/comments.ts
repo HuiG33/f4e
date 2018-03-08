@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {MediaProvider} from '../../providers/media/media';
 import {Comment} from '../../interfaces/comment';
+import {ReversePipe} from '../../pipes/reverse/reverse';
 
 /**
  * Generated class for the CommentsPage page.

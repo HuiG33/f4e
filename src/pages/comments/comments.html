@@ -28,7 +28,7 @@
       {{comment}}
     </ion-item>
     -->
-    <ion-item *ngFor="let comment of commentsArray">
+    <ion-item *ngFor="let comment of commentsArray | reverse">
       <div *ngIf="comment.user">
         {{comment.user.username}}: {{comment.comment}}
       </div>
