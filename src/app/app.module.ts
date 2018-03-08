@@ -17,6 +17,7 @@ import {EventPage} from '../pages/event/event';
 import {CommentsPage} from '../pages/comments/comments';
 import {ViewprofilePage} from '../pages/viewprofile/viewprofile';
 import {LogoutPage} from '../pages/logout/logout';
+import {SearchedeventsPage} from '../pages/searchedevents/searchedevents';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {LogoutPage} from '../pages/logout/logout';
     EventPage,
     CommentsPage,
     ViewprofilePage,
-    LogoutPage
+    LogoutPage,
+    SearchedeventsPage
   ],
   imports: [
     BrowserModule,
@@ -47,7 +49,8 @@ import {LogoutPage} from '../pages/logout/logout';
     EventPage,
     CommentsPage,
     ViewprofilePage,
-    LogoutPage
+    LogoutPage,
+    SearchedeventsPage
   ],
   providers: [
     StatusBar,
