@@ -194,4 +194,12 @@ export class MediaProvider {
     return this.http.get(this.apiUrl + '/tags/file/'+ id);
   }
 
+  getFileById(id) {
+    const settings = {
+      headers: new HttpHeaders().set('x-access-token',
+        localStorage.getItem('token')),
+    };
+    return this.http.get(this.apiUrl+'/media/' + id, settings);
+  }
+
 }

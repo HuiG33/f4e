@@ -1,8 +1,7 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import {NavController} from 'ionic-angular';
 import {MediaProvider} from '../../providers/media/media';
 import {EventPage} from '../event/event';
-import {HttpErrorResponse} from '@angular/common/http';
 import {Media} from '../../interfaces/media';
 import {Search} from '../../interfaces/search';
 import {LoginPage} from '../login/login';
@@ -18,8 +17,8 @@ export class HomePage {
 
   latestImgsArray: any;
   searchedImgsArray: any;
-  searchedImgsId = [];
-  oneMoreArray = [];
+  searchedImgsId: any;
+  oneMoreArray = [1, 2];
   file: any;
 
   media: Media = {
@@ -53,22 +52,27 @@ export class HomePage {
     this.mediaProvider.searchMedia(this.search).subscribe(response => {
       console.log(response);
       this.searchedImgsArray = response;
-      this.searchedImgsArray.forEach(data => {
-        this.searchedImgsId.push(data.file_id);
-      });
-      this.searchedImgsId.forEach(data => {
-        this.mediaProvider.tagsByFileId(data).subscribe(response => {
-          this.file = response;
-          if (this.file != '') {
-            if (this.file[0].tag == 'event') {
-              this.oneMoreArray.push(this.file[0].file_id);
-              console.log(this.oneMoreArray);
+
+      this.searchedImgsArray.map(search => {
+        const fileId = search.file_id;
+        console.log(fileId);
+// 1. kaikki yläpuolella tapahtuu, mut sit hyppää tonne alas kohtaan 2.
+// 3. miten saan tästä alas päin, kohtaan 4.
+        this.mediaProvider.tagsByFileId(fileId).subscribe(response => {
+          this.searchedImgsId = response;
+
+          this.searchedImgsId.map(file => {
+            const files = file.tag;
+            console.log(files);
+            if (file.tag == 'event'){
+              this.oneMoreArray.push(file.file_id);
             }
-          }
+          });
         });
       });
-    }, (error: HttpErrorResponse) => {
-      console.log(error);
+// 4. nämä tapahtumaan ennen kuin 2. tapahtuu
+// 2. eli hyppää tänne
+      console.log(this.oneMoreArray);
     });
   }
 
