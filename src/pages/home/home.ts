@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController} from 'ionic-angular';
+import {AlertController, LoadingController, NavController} from 'ionic-angular';
 import {MediaProvider} from '../../providers/media/media';
 import {EventPage} from '../event/event';
 import {Media} from '../../interfaces/media';
@@ -18,7 +18,7 @@ export class HomePage {
   latestImgsArray: any;
   searchedImgsArray: any;
   searchedImgsId: any;
-  oneMoreArray = [1, 2];
+  oneMoreArray = [];
   file: any;
 
   media: Media = {
@@ -44,18 +44,16 @@ export class HomePage {
   }
 
   constructor(
-    public navCtrl: NavController, private mediaProvider: MediaProvider) {
+    public navCtrl: NavController, private mediaProvider: MediaProvider, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
 
   }
 
   searchEvent() {
     this.mediaProvider.searchMedia(this.search).subscribe(response => {
-      console.log(response);
       this.searchedImgsArray = response;
 
       this.searchedImgsArray.map(search => {
         const fileId = search.file_id;
-        console.log(fileId);
 // 1. kaikki yläpuolella tapahtuu, mut sit hyppää tonne alas kohtaan 2.
 // 3. miten saan tästä alas päin, kohtaan 4.
         this.mediaProvider.tagsByFileId(fileId).subscribe(response => {
@@ -63,8 +61,7 @@ export class HomePage {
 
           this.searchedImgsId.map(file => {
             const files = file.tag;
-            console.log(files);
-            if (file.tag == 'event'){
+            if (files == 'event'){
               this.oneMoreArray.push(file.file_id);
             }
           });
@@ -72,8 +69,9 @@ export class HomePage {
       });
 // 4. nämä tapahtumaan ennen kuin 2. tapahtuu
 // 2. eli hyppää tänne
-      console.log(this.oneMoreArray);
+      console.log(this.oneMoreArray.length);
     });
+    this.showAlert();
   }
 
   searchEventByTag(tag) {
@@ -84,6 +82,23 @@ export class HomePage {
         searchTag: this.searchTag.tag,
       });
     });
+  }
+
+  showAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Found '+this.oneMoreArray.length+' events',
+      subTitle: 'Specify search or check results',
+      buttons: ['Cancel'],
+    });
+    alert.addButton({
+      text: 'Check Results',
+      handler: data => {
+        this.navCtrl.push(SearchedeventsPage, {
+          thing: this.oneMoreArray
+        });
+      }
+    });
+    alert.present();
   }
 
   ionViewDidLoad() {

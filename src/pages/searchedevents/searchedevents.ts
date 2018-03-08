@@ -38,6 +38,6 @@ export class SearchedeventsPage {
     console.log(this.thing);
     //console.log(this.response);
     //console.log(this.searchTag);
-    this.getFiles();
+    //this.getFiles();
   }
 }
