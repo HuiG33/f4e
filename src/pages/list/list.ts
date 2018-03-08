@@ -11,6 +11,8 @@ import {EventPage} from '../event/event';
 })
 export class ListPage {
   filesArray: any;
+  selectedItem: any;
+  searchItems: any;
   //icons: string[];
   //items: Array<{title: string, note: string, icon: string}>;
 
@@ -25,31 +27,36 @@ export class ListPage {
   }
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public mediaProvider: MediaProvider) {
-
+    this.selectedItem = navParams.get('item');
   }
+
+  getItems(ev: any) {
+
+    this.initializeItems();
+
+    let val = ev.target.value;
+
+    if (val && val.trim() != '') {
+
+      this.searchItems = this.searchItems.filter((item) => {
+        console.log(item.title);
+        return (item.title.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      });
+    }
+  }
+
+  initializeItems() {
+    this.searchItems = this.filesArray;
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad EventsList');
-    /*if (localStorage.getItem('token') != null) {
-      this.mediaProvider.getUserData().subscribe(response => {
-        console.log('Welcome ' + response['full_name']);*/
-        /*this.mediaProvider.getNewFiles().subscribe(response => {
-          console.log(response);
-          this.filesArray = response;
-        });*/
         this.mediaProvider.getFileWithSpecificTag('event').subscribe(response => {
           console.log(response);
           this.filesArray = response;
+
+          this.initializeItems();
         });
-      /*}, (error: HttpErrorResponse) => {
-        console.log(error);
-        //this.router.navigate(['login']);
-        //this.navCtrl.setRoot(LoginPage)
-      });
-    } else {
-      console.log('moi');
-      //this.router.navigate(['login']);
-      //this.navCtrl.setRoot(LoginPage);
-    }*/
   }
 
   itemTapped(event, item, file_id, title, description, user_id, filename, time_added) {
