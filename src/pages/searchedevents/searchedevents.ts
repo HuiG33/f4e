@@ -17,16 +17,19 @@ export class SearchedeventsPage {
 
   response: any;
   searchTag: any;
+  thing: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.response = navParams.get('response');
-    this.searchTag = this.navParams.get('searchTag')
+    this.searchTag = this.navParams.get('searchTag');
+    this.thing = this.navParams.get('thing');
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SearchedeventsPage');
-    console.log(this.response);
-    console.log(this.searchTag);
+    console.log(this.thing);
+    //console.log(this.response);
+    //console.log(this.searchTag);
 
   }
 

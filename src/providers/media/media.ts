@@ -190,4 +190,8 @@ export class MediaProvider {
     return this.http.get(this.apiUrl + '/tags/'+ tag);
   }
 
+  tagsByFileId(id) {
+    return this.http.get(this.apiUrl + '/tags/file/'+ id);
+  }
+
 }

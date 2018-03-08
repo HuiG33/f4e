@@ -11,8 +11,8 @@ import {EventPage} from '../event/event';
 })
 export class ListPage {
   filesArray: any;
-  icons: string[];
-  items: Array<{title: string, note: string, icon: string}>;
+  //icons: string[];
+  //items: Array<{title: string, note: string, icon: string}>;
 
 
   doRefresh(refresher) {
