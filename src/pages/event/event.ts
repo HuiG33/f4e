@@ -99,28 +99,28 @@ export class EventPage {
       //console.log(response);
       this.likes = response;
       console.log(this.likes);
-    });
-    for (let i = 0; i < this.likes.length; i++) {
-      this.mediaProvider.getUsernameByUserId(this.likes[i].user_id).
-        subscribe(response => {
+      this.likes = response;
+      this.likes.map(like => {
+        const userID = like.user_id;
+        this.mediaProvider.getUsernameByUserId(userID).subscribe(response => {
           console.log(response);
-          this.signedUser = response['username'];
-          this.signedUserEmail = response['email'];
-          this.signedUserId = response['user_id'];
           let button = {
-            text: this.signedUser,
+            text: response['username'],
             handler: () => {
-              console.log(i);
               this.navCtrl.push(ViewprofilePage, {
-                email: this.signedUserEmail,
-                username: this.signedUser,
-                user_id: this.signedUserId,
+                email: response['email'],
+                username: response['username'],
+                user_id: response['user_id'],
               });
             },
           };
           actionsheet.addButton(button);
         });
-    }
+      })
+
+
+    });
+
     actionsheet.present();
   }
 

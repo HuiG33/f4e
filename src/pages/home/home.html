@@ -63,8 +63,8 @@
         </ion-card-content>
       </ion-card>
     </div>
-
   </div>
+  <!--
   <div *ngIf="mediaProvider.logged">
     <ion-item>
       <ion-input type="text" [(ngModel)]="search.title" placeholder="Title" name="searchtitle"></ion-input>
@@ -72,5 +72,13 @@
     <br>
     <button ion-button block (click)="searchEvent()">Search events</button>
   </div>
+  -->
+    <div *ngIf="mediaProvider.logged">
+      <ion-item>
+        <ion-input type="text" [(ngModel)]="searchTag.tag" placeholder="Title" name="searchtitle"></ion-input>
+      </ion-item>
+      <br>
+      <button ion-button block (click)="searchEventByTag(searchTag.tag)">Search events</button>
+    </div>
 </ion-content>
 

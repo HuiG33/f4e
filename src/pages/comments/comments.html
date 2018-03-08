@@ -23,8 +23,15 @@
   </form>
 
   <ion-list>
+    <!--
     <ion-item *ngFor="let comment of allComments">
       {{comment}}
+    </ion-item>
+    -->
+    <ion-item *ngFor="let comment of commentsArray">
+      <div *ngIf="comment.user">
+        {{comment.user.username}}: {{comment.comment}}
+      </div>
     </ion-item>
   </ion-list>
 </ion-content>

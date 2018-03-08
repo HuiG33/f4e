@@ -6,6 +6,8 @@ import {HttpErrorResponse} from '@angular/common/http';
 import {Media} from '../../interfaces/media';
 import {Search} from '../../interfaces/search';
 import {LoginPage} from '../login/login';
+import {SearchedeventsPage} from '../searchedevents/searchedevents';
+import {Searchtag} from '../../interfaces/searchtag';
 
 @Component({
   selector: 'page-home',
@@ -23,6 +25,10 @@ export class HomePage {
 
   search: Search = {
     title: ''
+  };
+
+  searchTag: Searchtag = {
+    tag: ''
   };
 
   doRefresh(refresher) {
@@ -43,6 +49,16 @@ export class HomePage {
       console.log(response);
     }, (error: HttpErrorResponse) => {
       console.log(error);
+    });
+  }
+
+  searchEventByTag(tag){
+    this.mediaProvider.searchTag("event").subscribe(response => {
+      //console.log(response);
+      this.navCtrl.push(SearchedeventsPage, {
+        response: response,
+        searchTag: this.searchTag.tag
+      })
     });
   }
 

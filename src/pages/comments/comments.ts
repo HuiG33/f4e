@@ -46,16 +46,16 @@ export class CommentsPage {
     this.mediaProvider.getCommentsByFileId(this.fileID).subscribe(response => {
       console.log(response);
       this.commentsArray = response;
-      for (let i=0; i < this.commentsArray.length; i++){
-        this.userID = this.commentsArray[i].user_id;
-        console.log(this.userID);
-        this.allUserIds.push(this.userID);
-        this.mediaProvider.getUsernameByUserId(this.userID).subscribe(response => {
-          //console.log(response['username']);
-          this.allComments.push(response['username']+": "+this.commentsArray[i].comment);
+      this.commentsArray.map(comment => {
+        const userID = comment.user_id;
+        console.log(userID);
+        //this.allUserIds.push(userID);
+        this.mediaProvider.getUsernameByUserId(userID).subscribe(response => {
+          console.log(response);
+          comment.user = response;
         });
-      }
-      console.log(this.allComments);
+      });
+      console.log(this.commentsArray);
     });
   }
 

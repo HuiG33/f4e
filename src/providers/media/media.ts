@@ -185,4 +185,9 @@ export class MediaProvider {
     return this.http.post(this.apiUrl + '/media/search', media, settings);
   }
 
+  searchTag (tag) {
+    console.log(tag);
+    return this.http.get(this.apiUrl + '/tags/'+ tag);
+  }
+
 }
