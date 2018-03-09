@@ -7,6 +7,7 @@ import {Search} from '../../interfaces/search';
 import {LoginPage} from '../login/login';
 import {SearchedeventsPage} from '../searchedevents/searchedevents';
 import {Searchtag} from '../../interfaces/searchtag';
+import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
   selector: 'page-home',
@@ -44,34 +45,51 @@ export class HomePage {
   }
 
   constructor(
-    public navCtrl: NavController, private mediaProvider: MediaProvider, public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
+    public navCtrl: NavController, private mediaProvider: MediaProvider,
+    public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
 
   }
+
+  /*
+    searchEvent() {
+      this.mediaProvider.searchMedia(this.search).subscribe(response => {
+        this.searchedImgsArray = response;
+
+        this.searchedImgsArray.map(search => {
+          const fileId = search.file_id;
+  // 1. kaikki yläpuolella tapahtuu, mut sit hyppää tonne alas kohtaan 2.
+  // 3. miten saan tästä alas päin, kohtaan 4.
+          this.mediaProvider.tagsByFileId(fileId).subscribe(response => {
+            this.searchedImgsId = response;
+
+            this.searchedImgsId.map(file => {
+              const files = file.tag;
+              if (files == 'event'){
+                this.oneMoreArray.push(file.file_id);
+              }
+            });
+          });
+        });
+  // 4. nämä tapahtumaan ennen kuin 2. tapahtuu
+  // 2. eli hyppää tänne
+        console.log(this.oneMoreArray.length);
+      });
+      this.showAlert();
+    }
+  */
 
   searchEvent() {
     this.mediaProvider.searchMedia(this.search).subscribe(response => {
       this.searchedImgsArray = response;
-
-      this.searchedImgsArray.map(search => {
-        const fileId = search.file_id;
-// 1. kaikki yläpuolella tapahtuu, mut sit hyppää tonne alas kohtaan 2.
-// 3. miten saan tästä alas päin, kohtaan 4.
-        this.mediaProvider.tagsByFileId(fileId).subscribe(response => {
-          this.searchedImgsId = response;
-
-          this.searchedImgsId.map(file => {
-            const files = file.tag;
-            if (files == 'event'){
-              this.oneMoreArray.push(file.file_id);
-            }
-          });
-        });
-      });
-// 4. nämä tapahtumaan ennen kuin 2. tapahtuu
-// 2. eli hyppää tänne
-      console.log(this.oneMoreArray.length);
+      console.log(this.searchedImgsArray);
+    }, (error: HttpErrorResponse) => {
+      console.log(error);
+    }, () => {
+      console.log(this.searchedImgsArray);
+      this.navCtrl.push(SearchedeventsPage, {
+        thing: this.searchedImgsArray
+      })
     });
-    this.showAlert();
   }
 
   searchEventByTag(tag) {
@@ -86,7 +104,7 @@ export class HomePage {
 
   showAlert() {
     let alert = this.alertCtrl.create({
-      title: 'Found '+this.oneMoreArray.length+' events',
+      title: 'Found ' + this.oneMoreArray.length + ' events',
       subTitle: 'Specify search or check results',
       buttons: ['Cancel'],
     });
@@ -94,9 +112,9 @@ export class HomePage {
       text: 'Check Results',
       handler: data => {
         this.navCtrl.push(SearchedeventsPage, {
-          thing: this.oneMoreArray
+          thing: this.oneMoreArray,
         });
-      }
+      },
     });
     alert.present();
   }
