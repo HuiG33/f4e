@@ -5,11 +5,13 @@ import { ReversePipe } from './reverse/reverse';
 @NgModule({
 	declarations: [UserPipe,
     ThumbnailPipe,
-    ReversePipe],
+    ReversePipe,
+  ],
 	imports: [],
 	exports: [UserPipe,
     ThumbnailPipe,
-    ReversePipe]
+    ReversePipe,
+  ]
 })
 export class PipesModule {
 
