@@ -33,6 +33,7 @@ export class SearchedeventsPage {
       });
     });
   }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad SearchedeventsPage');
     console.log(this.thing);
