@@ -19,7 +19,7 @@ export class SearchedeventsPage {
   response: any;
   searchTag: any;
   thing: any;
-  searchedFiles: any;
+  searchedFiles = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private mediaProvider: MediaProvider) {
     this.response = navParams.get('response');
@@ -31,27 +31,18 @@ export class SearchedeventsPage {
     this.thing.forEach(data => {
       this.mediaProvider.tagsByFileId(data.file_id).subscribe(response => {
         if (response != '') {
-          this.searchedFiles = response;
-          console.log(this.searchedFiles);
+          if (response[0].tag == 'event'){
+            console.log(response[0].file_id);
+            this.mediaProvider.getFileById(response[0].file_id).subscribe(response => {
+              this.searchedFiles.push(response);
+              console.log(this.searchedFiles);
+            });
+          }
         }
       });
     });
   }
-/*
-  searchEvent() {
-    this.mediaProvider.searchMedia(this.search).subscribe(response => {
-      this.searchedImgsArray = response;
-      console.log(this.searchedImgsArray);
-    }, (error: HttpErrorResponse) => {
-      console.log(error);
-    }, () => {
-      console.log(this.searchedImgsArray);
-      this.navCtrl.push(SearchedeventsPage, {
-        thing: this.searchedImgsArray
-      })
-    });
-  }
-*/
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad SearchedeventsPage');
     console.log(this.thing);

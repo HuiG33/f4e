@@ -15,10 +15,11 @@
 
 <ion-content padding>
 
-  <ion-item *ngFor="let file of thing">
+  <ion-item *ngFor="let file of searchedFiles">
     <div>
-      {{file.file_id}}
+      <img src="http://media.mw.metropolia.fi/wbma/uploads/{{file.filename.split('.')[0]+'-tn320.png'}}">
     </div>
+
   </ion-item>
 
 </ion-content>

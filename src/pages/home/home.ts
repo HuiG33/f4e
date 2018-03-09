@@ -82,13 +82,9 @@ export class HomePage {
     this.mediaProvider.searchMedia(this.search).subscribe(response => {
       this.searchedImgsArray = response;
       console.log(this.searchedImgsArray);
-    }, (error: HttpErrorResponse) => {
-      console.log(error);
-    }, () => {
-      console.log(this.searchedImgsArray);
       this.navCtrl.push(SearchedeventsPage, {
         thing: this.searchedImgsArray
-      })
+      });
     });
   }
 
@@ -100,23 +96,6 @@ export class HomePage {
         searchTag: this.searchTag.tag,
       });
     });
-  }
-
-  showAlert() {
-    let alert = this.alertCtrl.create({
-      title: 'Found ' + this.oneMoreArray.length + ' events',
-      subTitle: 'Specify search or check results',
-      buttons: ['Cancel'],
-    });
-    alert.addButton({
-      text: 'Check Results',
-      handler: data => {
-        this.navCtrl.push(SearchedeventsPage, {
-          thing: this.oneMoreArray,
-        });
-      },
-    });
-    alert.present();
   }
 
   ionViewDidLoad() {
