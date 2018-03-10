@@ -18,12 +18,14 @@
   <h3>Friends 4 Events</h3>
 
   <ion-slides autoplay="" pager="true" loop="true" speed="500">
-    <ion-slide *ngFor="let image of latestImgsArray"
-               (click)="itemTapped($event, image.file_id, image.title, image.description, image.user_id, image.filename, image.time_added)">
-      <img class="slidingImg"
-           src="http://media.mw.metropolia.fi/wbma/uploads/{{image.filename.split('.')[0]+'-tn320.png'}}">
-      <h5>{{image.description}}</h5>
-    </ion-slide>
+    <div *ngFor="let image of latestImgsArray; let i = index;">
+      <ion-slide *ngIf="i < 5"
+        (click)="itemTapped($event, image.file_id, image.title, image.description, image.user_id, image.filename, image.time_added)">
+        <img class="slidingImg"
+             src="http://media.mw.metropolia.fi/wbma/uploads/{{image.filename.split('.')[0]+'-tn320.png'}}">
+        <h5>{{image.description}}</h5>
+      </ion-slide>
+    </div>
   </ion-slides>
   <div>
 

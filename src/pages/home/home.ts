@@ -98,7 +98,7 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
-    this.mediaProvider.get5LatestImages().subscribe(response => {
+    this.mediaProvider.getFileWithSpecificTag('event').subscribe(response => {
       console.log(response);
       this.latestImgsArray = response;
     });

@@ -159,7 +159,6 @@ export class MediaProvider {
     return this.http.get(this.apiUrl + '/tags/' + tag);
   }
 
-
   deleteTag(tag_id) {
     const settings = {
       headers: new HttpHeaders().set('x-access-token',
