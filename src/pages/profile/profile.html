@@ -15,9 +15,10 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="background">
+
   <form class="center" (submit)="uploadProfilePic()">
-    <ion-avatar>
+    <ion-avatar class="profile-avatar">
       <label for="file-input">
         <img src="http://media.mw.metropolia.fi/wbma/uploads/{{profilePicName}}" *ngIf="profilePicName != null">
         <img src="../assets/imgs/profilepicture.png" *ngIf="profilePicName == null">
@@ -47,21 +48,36 @@
     <br>
     <button class="uploadButton" ion-button block type="submit">Upload</button>
   </form>
+  <br>
+
+  <h2>My events</h2>
+  <ion-list >
+
+    <ion-card class="flexcard">
+      <img class="image" src="../assets/imgs/image.png"/>
+      <ion-card-content class="cardcontent">
+        <ion-card-title>
+          moi
+        </ion-card-title>
+        <p class="ellipsis"></p>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
 
 
-    <!--
-    <br>
-    -->
-    <!--input [(ngModel)]="media.title" type="text" name="title"-->
-    <!--
-    <br>
+  <!--
+  <br>
+  -->
+  <!--input [(ngModel)]="media.title" type="text" name="title"-->
+  <!--
+  <br>
 
 
-    -->
-<!--
-  <form (submit)="uploadProfilePic()">
-    <input type="file" name="file" (change)="setFile($event)">
-    <button ion-button clear type="submit">Upload profile picture</button>
-  </form>
--->
+  -->
+  <!--
+    <form (submit)="uploadProfilePic()">
+      <input type="file" name="file" (change)="setFile($event)">
+      <button ion-button clear type="submit">Upload profile picture</button>
+    </form>
+  -->
 </ion-content>

@@ -7,7 +7,6 @@ import {Search} from '../../interfaces/search';
 import {LoginPage} from '../login/login';
 import {SearchedeventsPage} from '../searchedevents/searchedevents';
 import {Searchtag} from '../../interfaces/searchtag';
-import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
   selector: 'page-home',

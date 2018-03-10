@@ -19,8 +19,9 @@ page-list {
 .ellipsis {
   width: 100%;
   overflow: hidden;
+  text-overflow: ellipsis;
   display: -webkit-box;
-  height: 30rem;
+  -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
 }
 

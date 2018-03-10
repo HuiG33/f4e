@@ -13,55 +13,68 @@
 </ion-header>
 
 
-<ion-content padding>
-  <ion-card>
+<ion-content padding class="background">
 
-    <ion-item (click)="redirectToUserThatPosted()">
-      <ion-avatar item-start>
-        <ion-icon class="ion-ios-contact"></ion-icon>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="none"
+                           style="opacity: 0.5"
+                           refreshingSpinner="crescent">
+    </ion-refresher-content>
+  </ion-refresher>
+  <div class="center2">
+    <ion-card>
 
-      </ion-avatar>
-      <h2>{{userName}}</h2>
-      <p>{{timeAdded}}</p>
-    </ion-item>
+      <ion-item (click)="redirectToUserThatPosted()">
+        <ion-avatar item-start>
+          <label>
+            <div class="div">
+              <img class="profile" id="profilepicture" src="../assets/imgs/image.png">
+            </div>
+          </label>
+          <!--<ion-icon class="ion-ios-contact"></ion-icon>-->
+        </ion-avatar>
+        <h2>{{userName}}</h2>
+        <p>{{timeAdded}}</p>
+      </ion-item>
 
-    <img class="eventImage" src="http://media.mw.metropolia.fi/wbma/uploads/{{fileName.split('.')[0]+'-tn320.png'}}">
+      <img class="eventImage" src="http://media.mw.metropolia.fi/wbma/uploads/{{fileName.split('.')[0]+'-tn320.png'}}">
 
-    <ion-card-content>
-      <h2>{{title}}</h2>
-      <p>{{description}}</p>
-    </ion-card-content>
-    <ion-row>
+      <ion-card-content>
+        <h2>{{title}}</h2>
+        <p>{{description}}</p>
+      </ion-card-content>
 
-      <ion-col>
-        <button ion-button icon-left clear small (click)="like()" *ngIf="!isLiked">
-          <ion-icon name="checkbox"></ion-icon>
-          <div>Sign up for event</div>
-        </button>
-        <button ion-button icon-left clear small (click)="unlike()" *ngIf="isLiked">
-          <ion-icon name="checkbox"></ion-icon>
-          <div>Sign out from event</div>
-        </button>
-      </ion-col>
+      <ion-row>
+        <ion-col>
+          <button ion-button icon-left clear small (click)="like()" *ngIf="!isLiked">
+            <ion-icon name="checkbox"></ion-icon>
+            <div>Sign up for event</div>
+          </button>
+          <button ion-button icon-left clear small (click)="unlike()" *ngIf="isLiked">
+            <ion-icon name="checkbox"></ion-icon>
+            <div>Sign out from event</div>
+          </button>
+        </ion-col>
 
-      <ion-col>
-        <button ion-button icon-left clear small (click)="showUsersSigned()">
-          <ion-icon name="contacts"></ion-icon>
-          <div>List of signed people ({{likeamount}})</div>
-        </button>
-      </ion-col>
-      <ion-col>
-        <button ion-button icon-left clear small (click)="itemTapped($event)">
-          <ion-icon name="text"></ion-icon>
-          <div>{{commentsAmount}} Comments</div>
-        </button>
-      </ion-col>
-      <ion-col center text-center>
-        <ion-note>
-          11h ago
-        </ion-note>
-      </ion-col>
-    </ion-row>
+        <ion-col>
+          <button ion-button icon-left clear small (click)="showUsersSigned()">
+            <ion-icon name="contacts"></ion-icon>
+            <div>List of signed people ({{likeamount}})</div>
+          </button>
+        </ion-col>
+        <ion-col>
+          <button ion-button icon-left clear small (click)="itemTapped($event)">
+            <ion-icon name="text"></ion-icon>
+            <div>{{commentsAmount}} Comments</div>
+          </button>
+        </ion-col>
+        <ion-col center text-center>
+          <ion-note>
+            11h ago
+          </ion-note>
+        </ion-col>
+      </ion-row>
 
-  </ion-card>
+    </ion-card>
+  </div>
 </ion-content>
