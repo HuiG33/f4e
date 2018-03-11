@@ -13,6 +13,7 @@ export class MediaProvider {
 
   username: string;
   password: string;
+  email: string;
   status: string;
   isLiked: boolean;
   apiUrl = 'http://media.mw.metropolia.fi/wbma';
@@ -60,6 +61,14 @@ export class MediaProvider {
 
     return this.http.get(this.apiUrl + '/users/user',
       settings);
+  }
+
+  updateUserData(data) {
+    const settings = {
+      headers: new HttpHeaders().set('x-access-token',
+        localStorage.getItem('token')),
+    };
+    return this.http.put(this.apiUrl + '/users', data, settings)
   }
 
   getUploadData(formData) {
@@ -200,5 +209,7 @@ export class MediaProvider {
     };
     return this.http.get(this.apiUrl+'/media/' + id, settings);
   }
+
+
 
 }

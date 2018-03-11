@@ -19,6 +19,7 @@ import {ViewprofilePage} from '../pages/viewprofile/viewprofile';
 import {LogoutPage} from '../pages/logout/logout';
 import {SearchedeventsPage} from '../pages/searchedevents/searchedevents';
 import {ReversePipe} from '../pipes/reverse/reverse';
+import {UpdatePage} from '../pages/update/update';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {ReversePipe} from '../pipes/reverse/reverse';
     ViewprofilePage,
     LogoutPage,
     SearchedeventsPage,
-    ReversePipe
+    ReversePipe,
+    UpdatePage
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,8 @@ import {ReversePipe} from '../pipes/reverse/reverse';
     CommentsPage,
     ViewprofilePage,
     LogoutPage,
-    SearchedeventsPage
+    SearchedeventsPage,
+    UpdatePage
   ],
   providers: [
     StatusBar,
