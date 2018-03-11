@@ -13,7 +13,6 @@ export class MediaProvider {
 
   username: string;
   password: string;
-  email: string;
   status: string;
   isLiked: boolean;
   apiUrl = 'http://media.mw.metropolia.fi/wbma';

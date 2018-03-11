@@ -1,6 +1,6 @@
 export interface UpdateUser {
-  username?: string;
-  password?: string;
-  email?: string;
-  token?: string;
+  username?: any;
+  password?: any;
+  email?: any;
+  token?: any;
 }
