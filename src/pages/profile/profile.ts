@@ -6,6 +6,7 @@ import {LoginPage} from '../login/login';
 import {Media} from '../../interfaces/media';
 import {ListPage} from '../list/list';
 import {Tags} from '../../interfaces/tags';
+import {UpdatePage} from '../update/update';
 
 /**
  * Generated class for the ProfilePage page.
@@ -166,6 +167,10 @@ export class ProfilePage {
           }
         });
     });
+  }
+
+  goToUpdate() {
+    this.navCtrl.push(UpdatePage);
   }
 
   ionViewDidLoad() {

@@ -35,13 +35,13 @@ export class EventPage {
   isLiked: boolean = false;
   likesArray: any;
   userWhoPostedEmail: string;
-  count: number;
+  //count: number;
   loggedUserId: number;
-  likeIdArray: Array<{ favourite_id: number, file_id: number, user_id: number }> = [];
-  signedLength: number;
-  signedUser: string;
-  signedUserId: number;
-  signedUserEmail: string;
+  //likeIdArray: Array<{ favourite_id: number, file_id: number, user_id: number }> = [];
+  //signedLength: number;
+  //signedUser: string;
+  //signedUserId: number;
+  //signedUserEmail: string;
 
   constructor(
     public navCtrl: NavController, public navParams: NavParams,
@@ -163,7 +163,7 @@ export class EventPage {
       this.loggedUserId = response['user_id'];
       console.log(this.loggedUserId);
     });
-    //console.log(this.fileID);
+    console.log(this.fileID);
     //console.log(this.title);
     //console.log(this.description);
     //console.log(this.userID);
